@@ -8,11 +8,21 @@ export const Container = styled.div`
 export const Item = styled.div`
 	color: white;
 	margin-bottom: 10px;
-	max-width: 670px;
+	max-width: 815px;
+	margin: auto;
+	width: 100%;
 
 	&:first-of-type {
 		margin-top: 3em;	
 	}
+`;
+
+export const Inner = styled.div`
+	display: flex;
+	padding: 70px 45px;
+	flex-direction: column;
+	max-width: 815px;
+	margin: auto;
 `;
 
 export const Header = styled.div`
@@ -25,7 +35,7 @@ export const Header = styled.div`
 	font-size: 26px;
 	font-weight: normal;
 	background: #303030;
-	padding: 0.8em 1.2em;
+	padding: 16px 44px 16px 24px;
 	user-select: none;
 
 	img {
@@ -40,14 +50,6 @@ export const Header = styled.div`
 	@media(max-width: 600px) {
 		font-size: 16px;
 	}
-`
-
-export const Inner = styled.div`
-	display: flex;
-	padding: 70px 45px;
-	flex-direction: column;
-	max-width: 815px;
-	margin: auto;
 `;
 
 export const Frame = styled.div`
