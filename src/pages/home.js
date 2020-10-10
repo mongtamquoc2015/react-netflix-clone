@@ -1,13 +1,27 @@
 import React from 'react';
 
-import JumBotronContainer from '../containers/jumbotron';
-import FaqsContainer from '../containers/faqs';
-import FooterContainer from '../containers/footer';
+import {
+	JumbotronContainer,
+	FaqsContainer,
+	FooterContainer,
+	HeaderContainer,
+} from '../containers';
+import { OptForm, Feature } from '../components';
 
 function Home() {
 	return (
 		<>
-			<JumBotronContainer />
+			<HeaderContainer>
+				<Feature>
+					<Feature.Title>
+						Unlimited films, TV programes and more.
+					</Feature.Title>
+					<Feature.SubTitle>
+						Watch anywhere. Cancel at any time.
+					</Feature.SubTitle>
+				</Feature>
+			</HeaderContainer>
+			<JumbotronContainer />
 			<FaqsContainer />
 			<FooterContainer />
 		</>
