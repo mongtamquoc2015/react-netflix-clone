@@ -6,7 +6,7 @@ import {
 	FooterContainer,
 	HeaderContainer,
 } from '../containers';
-import { OptForm, Feature } from '../components';
+import { Feature } from '../components';
 
 function Home() {
 	return (
