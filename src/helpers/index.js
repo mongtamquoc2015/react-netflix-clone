@@ -1,0 +1,1 @@
+export { IsUserRedirect, ProtectedRoute } from './routes';
