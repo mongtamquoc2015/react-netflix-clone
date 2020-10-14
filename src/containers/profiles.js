@@ -1,15 +1,27 @@
 import React from 'react';
 
-import { HeaderContainer } from '../containers';
-import { Profiles } from '../components';
-
+import { Profiles, Header } from '../components';
+import * as ROUTES from '../constants/routes';
+import logo from '../logo.svg';
 
 export default function SelectProfileContainer({ user, setProfile }) {
+
+	const handleOnProfileChange = () => {
+		setProfile({
+			displayName: user.displayName,
+			photoURL: user.photoURL
+		});
+	}
+
 	return (
 		<>
-			<HeaderContainer bg={false} />
+			<Header bg={false}>
+				<Header.Frame>
+					<Header.Logo to={ROUTES.HOME} alt="Netflix" src={logo} />
+				</Header.Frame>
+			</Header>
 
-			<Profiles>
+			<Profiles onClick={handleOnProfileChange}>
 				<Profiles.Title>Who's watching?</Profiles.Title>
 				<Profiles.List>
 					<Profiles.User onClick={null}>
@@ -19,5 +31,5 @@ export default function SelectProfileContainer({ user, setProfile }) {
 				</Profiles.List>
 			</Profiles>
 		</>
-	)
+	);
 }
