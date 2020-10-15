@@ -166,3 +166,45 @@ export const ButtonLink = styled(ReactRouterLink)`
 	background-color: #f40612;
 	}
 `;
+
+export const Search = styled.div`
+	display: flex;
+	align-items: center;
+
+	svg {
+		color: white;
+		cursor: pointer
+	}
+
+	@media(max-width: 700px) {
+		display: none;
+	}
+`;
+
+export const SearchIcon = styled.button`
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+	outline: none;
+
+	img {
+		filter: brightness(0) invert(1);
+		width: 16px;
+	}
+`;
+
+export const SearchInput = styled.input`
+	background-color: #444459;
+	color: white;
+	border: 1px solid white;
+	transition: width 0.5s;
+	height: 30px;
+	position: relative;
+	outline: none;
+	border-radius: 5px;
+
+	margin-left: ${({ active }) => active === true ? '10px' : '0'};
+	padding: ${({ active }) => active === true ? '0 10px' : '0'};
+	opacity: ${({ active }) => active === true ? '1' : '0'};
+	width: ${({ active }) => active === true ? '200px' : '0'};
+`;

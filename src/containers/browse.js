@@ -9,6 +9,9 @@ import * as ROUTES from '../constants/routes';
 export default function BrowseContainer({ slides }) {
 	const [profile, setProfile] = useState({});
 	const [loading, setLoading] = useState(true);
+	const [searchTearm, setSearchTerm] = useState('');
+	const [searchActive, setSearchActive] = useState(false);
+
 	const { firebase } = useContext(FirebaseContext);
 	const user = firebase.auth().currentUser || {};
 
@@ -22,6 +25,16 @@ export default function BrowseContainer({ slides }) {
 		firebase.auth().signOut();
 	}
 
+	const handleOnSearchIconClick = () => {
+		setSearchActive(!searchActive);
+	}
+
+	const handleOnSearchTermChange = ({ target }) => {
+		setSearchTerm(target.value);
+	}
+
+
+
 	return profile.displayName ? (
 		<>
 			{loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
@@ -34,6 +47,12 @@ export default function BrowseContainer({ slides }) {
 						<Header.TextLink>Films</Header.TextLink>
 					</Header.Group>
 					<Header.Group>
+						<Header.Search
+							searchTearm={searchTearm}
+							changed={handleOnSearchTermChange}
+							clicked={handleOnSearchIconClick}
+							searchActive={searchActive}
+						/>
 						<Header.Profile>
 							<Header.Picture src={user.photoURL} />
 							<Header.Dropdown>

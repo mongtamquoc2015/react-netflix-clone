@@ -13,7 +13,10 @@ import {
 	Group,
 	Picture,
 	Profile,
-	Dropdown
+	Dropdown,
+	Search,
+	SearchIcon,
+	SearchInput
 } from './styles/header';
 
 export default function Header({ bg = true, children, ...restProps }) {
@@ -67,3 +70,14 @@ Header.Logo = function HeaderLogo({ to, ...restProps }) {
 Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
 	return <ButtonLink {...restProps}>{children}</ButtonLink>;
 };
+
+Header.Search = function HeaderSearch({ searchTerm, clicked, changed, searchActive, ...restProps }) {
+	return (
+		<Search {...restProps}>
+			<SearchIcon onClick={clicked}>
+				<img src="/images/icons/search.png" alt="Search" />
+			</SearchIcon>
+			<SearchInput value={searchTerm} onClick={changed} placeholder="Search films and series" active={searchActive} />
+		</Search>
+	);
+}
