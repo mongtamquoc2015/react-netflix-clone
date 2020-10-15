@@ -16,7 +16,8 @@ import {
 	Dropdown,
 	Search,
 	SearchIcon,
-	SearchInput
+	SearchInput,
+	PlayButton
 } from './styles/header';
 
 export default function Header({ bg = true, children, ...restProps }) {
@@ -80,4 +81,8 @@ Header.Search = function HeaderSearch({ searchTerm, clicked, changed, searchActi
 			<SearchInput value={searchTerm} onClick={changed} placeholder="Search films and series" active={searchActive} />
 		</Search>
 	);
+}
+
+Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
+	return <PlayButton {...restProps}>{children}</PlayButton>
 }
