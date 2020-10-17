@@ -3,8 +3,9 @@ import React, { useState, useContext, createContext } from 'react';
 import {
 	Container, Title, SubTitle, Group, Text,
 	Item, Meta, Feature, FeatureText, FeatureClose,
-	Maturity, Content, Entities, Image
+	Maturity, Content, Entities, Image, FeatureTitle
 } from './styles/card';
+import { transformTitle } from '../../utils';
 
 export const FeatureContext = createContext();
 
@@ -60,8 +61,26 @@ Card.Image = function CardImage({ ...restProps }) {
 	return <Image {...restProps} />
 }
 
-Card.Feature = function CardFeature({ children, ...restProps }) {
-	return <Feature {...restProps}>{children}</Feature>
+Card.Feature = function CardFeature({ category, children, ...restProps }) {
+	const { showFeature, itemFeature, setShowFeature } = useContext(FeatureContext);
+	return showFeature && (
+		<Feature {...restProps} src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}>
+			<Content>
+				<FeatureTitle>{itemFeature.title}</FeatureTitle>
+				<FeatureText>{itemFeature.description}</FeatureText>
+				<FeatureClose onClick={() => setShowFeature(false)}>
+					<img src="/images/icons/close.png" alt="Close" />
+				</FeatureClose>
+			</Content>
+
+			<Group margin="30px 0" flexDirection="row" alignItems="center">
+				<Maturity rating={itemFeature.maturity}>{itemFeature.maturity < 12 ? 'PG' : itemFeature.maturity}</Maturity>
+				<FeatureText fontWeight="bold">
+					{transformTitle(itemFeature.genre)}
+				</FeatureText>
+			</Group>
+		</Feature>
+	);
 }
 
 Card.FeatureText = function CardFeatureText({ children, ...restProps }) {
