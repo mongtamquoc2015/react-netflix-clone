@@ -89,13 +89,13 @@ export const Item = styled.p`
 	}
 
 	&:first-of-type {
-		margin: left;
+		margin-left: 56px;
 
 		@media(max-width: 1000px) {
 			margin-left: 30px;
 		}
 	}
-	
+
 	&:last-of-type {
 		margin-right: 56px;
 
@@ -146,7 +146,14 @@ export const Content = styled.div`
 `;
 
 export const FeatureText = styled.p`
-	margin-left: 0;
+	font-size: 18px;
+	color: white;
+	font-weight: ${({ fontWeight }) => fontWeight === 'bold' ? 'bold' : 'normal'};
+	margin: 0;
+
+	@media(max-width: 600px) {
+		line-height: 22px;
+	}
 `;
 
 export const Feature = styled.div`
@@ -186,8 +193,10 @@ export const FeatureClose = styled.button`
 	right: 20px;
 	top: 20px;
 	cursor: pointer;
+
 	background-color: transparent;
 	border: 0;
+	outline: none;
 
 	img {
 		filter: brightness(0) invert(1);

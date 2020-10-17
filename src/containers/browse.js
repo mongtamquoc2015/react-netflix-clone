@@ -5,6 +5,7 @@ import { FirebaseContext } from '../context/firebase';
 import { Loading, Header, Card } from '../components';
 import logo from '../logo.svg';
 import * as ROUTES from '../constants/routes';
+import { FooterContainer } from '../containers';
 
 export default function BrowseContainer({ slides }) {
 	const [category, setCategory] = useState('series');
@@ -108,11 +109,12 @@ export default function BrowseContainer({ slides }) {
 							))}
 						</Card.Entities>
 						<Card.Feature category={category}>
-							
+
 						</Card.Feature>
 					</Card>
 				))}
 			</Card.Group>
+			<FooterContainer />
 		</>
 	) : (
 			<SelectProfileContainer user={user} setProfile={setProfile} />
