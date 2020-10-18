@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Fuse from 'fuse.js';
 
 import SelectProfileContainer from './profiles';
 import { FirebaseContext } from '../context/firebase';
@@ -11,7 +12,7 @@ export default function BrowseContainer({ slides }) {
 	const [category, setCategory] = useState('series');
 	const [profile, setProfile] = useState({});
 	const [loading, setLoading] = useState(true);
-	const [searchTearm, setSearchTerm] = useState('');
+	const [searchTerm, setSearchTerm] = useState('');
 	const [searchActive, setSearchActive] = useState(false);
 	const [slideRows, setSlideRows] = useState([]);
 
@@ -27,6 +28,19 @@ export default function BrowseContainer({ slides }) {
 	useEffect(() => {
 		setSlideRows(slides[category]);
 	}, [slides, category]);
+
+	useEffect(() => {
+		const fuse = new Fuse(slideRows, { keys: ['data.description', 'data.title', 'data.genre'] });
+		const results = fuse.search(searchTerm).map(({ item }) => item);
+
+		console.log(`results`, results);
+
+		if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+			setSlideRows(results);
+		} else {
+			setSlideRows(slides[category]);
+		}
+	}, [searchTerm]);
 
 	const handleOnSignoutClick = () => {
 		firebase.auth().signOut();
@@ -63,7 +77,7 @@ export default function BrowseContainer({ slides }) {
 					</Header.Group>
 					<Header.Group>
 						<Header.Search
-							searchTearm={searchTearm}
+							searchTerm={searchTerm}
 							changed={handleOnSearchTermChange}
 							clicked={handleOnSearchIconClick}
 							searchActive={searchActive}
